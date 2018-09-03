@@ -31,4 +31,11 @@ final class TodoController {
     func clear(_ req: Request) throws -> Future<HTTPStatus> {
         return Todo.query(on: req).delete().transform(to: .ok)
     }
+    
+    func view(_ req: Request) throws -> Future<Todo.Outgoing> {
+        let todo = try req.parameters.next(Todo.self)
+        return todo.map { todo in
+            return try todo.makeOutgoing(with: req)
+        }
+    }
 }
