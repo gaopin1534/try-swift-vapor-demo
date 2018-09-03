@@ -15,5 +15,5 @@ extension Request {
         }
         let scheme = http.remotePeer.scheme ?? "http"
         return "\(scheme)://\(host)/todos/".finished(with: "/")
-    }g
+    }
 }
