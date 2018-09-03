@@ -14,7 +14,7 @@ extension Todo {
         var order: Int?
         
         func makeTodo() -> Todo {
-            return Todo(id: nil, title: title ?? "n/a", compiled:  completed ?? false, order: order)
+            return Todo(id: nil, title: title ?? "n/a", completed:  completed ?? false, order: order)
         }
     }
 }

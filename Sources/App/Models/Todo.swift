@@ -8,7 +8,7 @@ struct Todo: SQLiteModel {
 
     /// A title describing what this `Todo` entails.
     var title: String
-    var compiled: Bool
+    var completed: Bool
     var order: Int?
 }
 
