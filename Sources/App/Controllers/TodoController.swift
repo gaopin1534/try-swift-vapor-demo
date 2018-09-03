@@ -16,9 +16,7 @@ final class TodoController {
         return try req.content.decode(Todo.Incoming.self).flatMap { incoming -> Future<Todo> in
             let todo = incoming.makeTodo()
             return todo.save(on: req)
-        }.map { todo in
-            return try todo.makeOutgoing(with: req)
-        }
+        }.makeOutgoing(with: req)
     }
 
     /// Deletes a parameterized `Todo`.
@@ -34,8 +32,6 @@ final class TodoController {
     
     func view(_ req: Request) throws -> Future<Todo.Outgoing> {
         let todo = try req.parameters.next(Todo.self)
-        return todo.map { todo in
-            return try todo.makeOutgoing(with: req)
-        }
+        return todo.makeOutgoing(with: req)
     }
 }

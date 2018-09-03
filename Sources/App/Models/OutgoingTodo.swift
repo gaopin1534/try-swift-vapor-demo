@@ -24,3 +24,9 @@ extension Todo {
         return Outgoing(id: id, title: title, completed: completed, order: order, url: url)
     }
 }
+
+extension Future where T == Todo {
+    func makeOutgoing(with req: Request) -> Future<Todo.Outgoing> {
+        return map { try $0.makeOutgoing(with: req) }
+    }
+}
