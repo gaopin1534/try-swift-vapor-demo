@@ -9,7 +9,8 @@ final class TodoController {
 
     /// Saves a decoded `Todo` to the database.
     func create(_ req: Request) throws -> Future<Todo> {
-        return try req.content.decode(Todo.self).flatMap { todo in
+        return try req.content.decode(Todo.Incoming.self).flatMap { incoming in
+            let todo = incoming.makeTodo()
             return todo.save(on: req)
         }
     }
